@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>console.log("I run first overall");</script>
+    <style>
+        /*I am a style*/
+        main {
+            width: 80%;
+        }
+    </style>
+    <!-- This stylesheet overrides any styles in the block above -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<script>console.log("I run first in the body");</script>
+<main>
+    <form id="note-form">
+        <label style="color: rebeccapurple">
+            Title:
+            <input placeholder="title">
+        </label>
+        <!-- Add more inputs -->
+    </form>
+    <h3>
+        My notes
+    </h3>
+    <p>
+        Here is a list of my notes
+    </p>
+    <div id="notes">
+        <article>
+            <h3>
+                Title Text
+            </h3>
+            <p>
+                Body Text
+            </p>
+        </article>
+    </div>
+</main>
+<script src="main.js"></script>
+<script>console.log("I run last in the body");</script>
+</body>
+</html>

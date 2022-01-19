@@ -1,0 +1,15 @@
+label:last-of-type {
+    color: aqua;
+}
+
+input#body-input {
+    color: deeppink;
+}
+
+article > h3 {
+    font-family: sans-serif;
+}
+
+article > p {
+    font-family: monospace;
+}
