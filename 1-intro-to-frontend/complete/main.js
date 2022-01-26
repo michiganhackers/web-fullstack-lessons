@@ -5,9 +5,8 @@ const notes = document.getElementById("notes");
 
 noteForm.onsubmit = function(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const title = formData.get("title");
-    const body = formData.get("body");
+    const title = titleInput.value;
+    const body = bodyInput.value;
 
     if (!title && !body) {
         return;
