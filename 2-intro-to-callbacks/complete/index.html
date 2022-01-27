@@ -9,11 +9,12 @@
 <main>
     <article>
         <h3>Changeable Text</h3>
-        <p id="changeable-text">Use the buttons to change how I look! Press ctrl on any button to reset that property.</p>
+        <p id="changeable-text">Use the buttons to change how I look! Press ctrl/cmd on any button to reset that property.</p>
         <button id="increase-font-size">Increase Font Size</button>
         <button id="decrease-font-size">Decrease Font Size</button>
         <button id="change-color">Change Color</button>
         <button id="change-bg-color">Double-click me</button>
+        <p>Try clicking any of the colored divs. Notice what order the alerts come in.</p>
         <div id="outer-div" class="bubble-divs">
             Click me
             <div id="middle-div" class="bubble-divs">
@@ -23,6 +24,9 @@
                 </div>
             </div>
         </div>
+        <p>Click on the new buttons to delete them!</p>
+        <button id="add-button">Add a button</button>
+        <div id="buttons-container"></div>
     </article>
 </main>
 <script src="main.js"></script>

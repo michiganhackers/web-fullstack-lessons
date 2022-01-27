@@ -6,6 +6,8 @@ const changeBgColorButton = document.getElementById("change-bg-color");
 const innerDiv = document.getElementById("inner-div");
 const middleDiv = document.getElementById("middle-div");
 const outerDiv = document.getElementById("outer-div");
+const addButton = document.getElementById('add-button');
+const buttonsContainer = document.getElementById('buttons-container');
 const main = document.querySelector("main")
 
 
@@ -14,7 +16,7 @@ const defaultSize = parseInt(window.getComputedStyle(document.body).getPropertyV
 let fontSize = defaultSize;
 
 fontIncreaseButton.onclick = function (event) {
-    if (event.ctrlKey) {
+    if (event.metaKey) {
         fontSize = defaultSize;
     }
     else {
@@ -24,7 +26,7 @@ fontIncreaseButton.onclick = function (event) {
 }
 
 fontDecreaseButton.onclick = function (event) {
-    if (event.ctrlKey) {
+    if (event.metaKey) {
         fontSize = defaultSize;
     }
     else {
@@ -34,7 +36,7 @@ fontDecreaseButton.onclick = function (event) {
 }
 
 changeColorButton.onclick = function (event) {
-    if (event.ctrlKey) {
+    if (event.metaKey) {
         changeableText.style.color = 'black';
     }
     else {
@@ -48,7 +50,7 @@ let lastClickTime = 0;
 changeBgColorButton.onclick = function (event) {
     if (event.timeStamp - lastClickTime < maxDelay) {
         lastClickTime = 0;
-        if (event.ctrlKey) {
+        if (event.metaKey) {
             changeableText.style.backgroundColor = 'transparent';
         }
         else {
@@ -80,4 +82,13 @@ middleDiv.onclick = function (event) {
 
 outerDiv.onclick = function (event) {
     alert('Red div clicked!');
+}
+
+addButton.onclick = function (event) {
+    let newButton = document.createElement('button');
+    newButton.innerText = 'Delete me';
+    newButton.onclick = function (event) {
+        newButton.remove();
+    }
+    buttonsContainer.appendChild(newButton);
 }
