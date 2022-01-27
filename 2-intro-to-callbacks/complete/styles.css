@@ -1,0 +1,27 @@
+button:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s;
+}
+
+button:focus {
+    background-color: black;
+    color: white;
+}
+
+#outer-div {
+    background-color: red;
+    margin-top: 1rem;
+}
+
+#middle-div {
+    background-color: yellow;
+}
+
+#inner-div {
+    background-color: green;
+}
+
+.bubble-divs {
+    padding: 10px;
+    text-align: center;
+}

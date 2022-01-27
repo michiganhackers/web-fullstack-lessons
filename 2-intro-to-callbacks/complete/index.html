@@ -9,11 +9,20 @@
 <main>
     <article>
         <h3>Changeable Text</h3>
-        <p id="changeable-text">Use the buttons to change how I look!</p>
+        <p id="changeable-text">Use the buttons to change how I look! Press ctrl on any button to reset that property.</p>
         <button id="increase-font-size">Increase Font Size</button>
         <button id="decrease-font-size">Decrease Font Size</button>
         <button id="change-color">Change Color</button>
         <button id="change-bg-color">Double-click me</button>
+        <div id="outer-div" class="bubble-divs">
+            Click me
+            <div id="middle-div" class="bubble-divs">
+                Click me
+                <div id="inner-div" class="bubble-divs">
+                    Click me
+                </div>
+            </div>
+        </div>
     </article>
 </main>
 <script src="main.js"></script>

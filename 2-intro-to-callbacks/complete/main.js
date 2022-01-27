@@ -3,21 +3,43 @@ const fontIncreaseButton = document.getElementById("increase-font-size");
 const fontDecreaseButton = document.getElementById("decrease-font-size");
 const changeColorButton = document.getElementById("change-color");
 const changeBgColorButton = document.getElementById("change-bg-color");
+const innerDiv = document.getElementById("inner-div");
+const middleDiv = document.getElementById("middle-div");
+const outerDiv = document.getElementById("outer-div");
 const main = document.querySelector("main")
 
-let fontSize = 14;
+
+// initalize font size to browser default
+const defaultSize = parseInt(window.getComputedStyle(document.body).getPropertyValue('font-size'), 10);
+let fontSize = defaultSize;
+
 fontIncreaseButton.onclick = function (event) {
-    ++fontSize;
+    if (event.ctrlKey) {
+        fontSize = defaultSize;
+    }
+    else {
+        ++fontSize;
+    }
     changeableText.style.fontSize = `${fontSize}px`
 }
 
 fontDecreaseButton.onclick = function (event) {
-    --fontSize;
+    if (event.ctrlKey) {
+        fontSize = defaultSize;
+    }
+    else {
+        --fontSize;
+    }
     changeableText.style.fontSize = `${fontSize}px`
 }
 
 changeColorButton.onclick = function (event) {
-    changeableText.style.color = randomColor();
+    if (event.ctrlKey) {
+        changeableText.style.color = 'black';
+    }
+    else {
+        changeableText.style.color = randomColor();
+    }
 }
 
 // in ms
@@ -26,7 +48,12 @@ let lastClickTime = 0;
 changeBgColorButton.onclick = function (event) {
     if (event.timeStamp - lastClickTime < maxDelay) {
         lastClickTime = 0;
-        changeableText.style.backgroundColor = randomColor();
+        if (event.ctrlKey) {
+            changeableText.style.backgroundColor = 'transparent';
+        }
+        else {
+            changeableText.style.backgroundColor = randomColor();
+        }
     }
     lastClickTime = event.timeStamp;
 }
@@ -41,4 +68,16 @@ function randomColor() {
 
 function randRange(start, end) {
     return Math.floor(Math.random() * (end - start + 1) + start);
+}
+
+innerDiv.onclick = function (event) {
+    alert('Green div clicked!');
+}
+
+middleDiv.onclick = function (event) {
+    alert('Yellow div clicked!');
+}
+
+outerDiv.onclick = function (event) {
+    alert('Red div clicked!');
 }
