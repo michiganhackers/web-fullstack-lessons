@@ -23,11 +23,9 @@ let fontSize = defaultSize;
 // TODO:
 // Add a button that only does something when double clicked.
 // Try not to use the ondblclick attribute!
-// Hint: use the Event.timeStamp attribute and check the time between clicks.
 
 // TODO:
 // Modify your existing buttons so that they reset their style when ctrl+clicked.
-// Hint: the Event.ctrlKey attribute will tell you if the ctrlKey is being held down
 
 // TODO:
 // Add an onclick callback to addButton that inserts a new button inside buttonsContainer
