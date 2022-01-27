@@ -29,4 +29,5 @@ button:focus {
 /* Only modify buttons in the button container */
 #buttons-container > button {
     display: block;
+    margin-top: 8px;
 }

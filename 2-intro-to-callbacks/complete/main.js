@@ -1,4 +1,5 @@
 const changeableText = document.getElementById("changeable-text");
+const changeableTextContainer = document.getElementById("changeable-text-container");
 const fontIncreaseButton = document.getElementById("increase-font-size");
 const fontDecreaseButton = document.getElementById("decrease-font-size");
 const changeColorButton = document.getElementById("change-color");
@@ -64,16 +65,12 @@ function randRange(start, end) {
     return Math.floor(Math.random() * (end - start + 1) + start);
 }
 
-innerDiv.onclick = function (event) {
-    console.log('Green div clicked!');
-}
-
-middleDiv.onclick = function (event) {
-    console.log('Yellow div clicked!');
-}
-
-outerDiv.onclick = function (event) {
-    console.log('Red div clicked!');
+changeableTextContainer.onclick = function (event) {
+    if (event.target.tagName === "BUTTON") {
+        console.log("You clicked one of the style-changing buttons. Notice how events bubble up.");
+    } else {
+        console.log("You clicked the style-changing container directly!")
+    }
 }
 
 /**

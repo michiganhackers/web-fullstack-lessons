@@ -1,4 +1,5 @@
 const changeableText = document.getElementById("changeable-text");
+const changeableTextContainer = document.getElementById("changeable-text-container");
 const fontIncreaseButton = document.getElementById("increase-font-size");
 const innerDiv = document.getElementById("inner-div");
 const middleDiv = document.getElementById("middle-div");
@@ -14,7 +15,7 @@ let fontSize = defaultSize;
 
 // TODO: 
 // Add an onclick callback to fontIncreaseButton that decrements fontSize.
-// Then, set the font size of changeableText to `${fontSize}px`
+// Then, set the font size of changeableText
 
 // TODO:
 // Add more buttons and event handlers that modify the style attribute.
@@ -44,16 +45,11 @@ function randRange(start, end) {
     return Math.floor(Math.random() * (end - start + 1) + start);
 }
 
-// stuff for the bubbling demo
-
-innerDiv.onclick = function (event) {
-    console.log('Green div clicked!');
-}
-
-middleDiv.onclick = function (event) {
-    console.log('Yellow div clicked!');
-}
-
-outerDiv.onclick = function (event) {
-    console.log('Red div clicked!');
+// Example of event bubbling
+changeableTextContainer.onclick = function (event) {
+    if (event.target.tagName === "BUTTON") {
+        console.log("You clicked one of the style-changing buttons. Notice how events bubble up.");
+    } else {
+        console.log("You clicked the style-changing container directly!")
+    }
 }
