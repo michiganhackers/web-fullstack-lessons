@@ -1,0 +1,31 @@
+/* 
+ TODO: add more styles to buttons using the :hover and :focus selectors
+ 
+ Example:
+ button:hover {
+    // do something
+ }
+*/
+
+#outer-div {
+    background-color: red;
+    margin-top: 1rem;
+}
+
+#middle-div {
+    background-color: yellow;
+}
+
+#inner-div {
+    background-color: green;
+}
+
+.bubble-divs {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Only modify buttons in the button container */
+#buttons-container > button {
+    display: block;
+}
