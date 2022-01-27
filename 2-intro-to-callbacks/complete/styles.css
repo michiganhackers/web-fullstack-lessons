@@ -25,3 +25,8 @@ button:focus {
     padding: 10px;
     text-align: center;
 }
+
+/* Only modify buttons in the button container */
+#buttons-container > button {
+    display: block;
+}

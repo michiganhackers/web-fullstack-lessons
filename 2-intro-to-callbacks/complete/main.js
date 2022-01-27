@@ -8,38 +8,34 @@ const middleDiv = document.getElementById("middle-div");
 const outerDiv = document.getElementById("outer-div");
 const addButton = document.getElementById('add-button');
 const buttonsContainer = document.getElementById('buttons-container');
-const main = document.querySelector("main")
 
 
-// initalize font size to browser default
+// initialize font size to browser default
 const defaultSize = parseInt(window.getComputedStyle(document.body).getPropertyValue('font-size'), 10);
 let fontSize = defaultSize;
 
 fontIncreaseButton.onclick = function (event) {
-    if (event.metaKey) {
+    if (event.ctrlKey) {
         fontSize = defaultSize;
-    }
-    else {
+    } else {
         ++fontSize;
     }
     changeableText.style.fontSize = `${fontSize}px`
 }
 
 fontDecreaseButton.onclick = function (event) {
-    if (event.metaKey) {
+    if (event.ctrlKey) {
         fontSize = defaultSize;
-    }
-    else {
+    } else {
         --fontSize;
     }
     changeableText.style.fontSize = `${fontSize}px`
 }
 
 changeColorButton.onclick = function (event) {
-    if (event.metaKey) {
+    if (event.ctrlKey) {
         changeableText.style.color = 'black';
-    }
-    else {
+    } else {
         changeableText.style.color = randomColor();
     }
 }
@@ -47,21 +43,17 @@ changeColorButton.onclick = function (event) {
 // in ms
 const maxDelay = 200;
 let lastClickTime = 0;
+// this can also be done using ondblclick, but the purpose is to show how to manually implement it
 changeBgColorButton.onclick = function (event) {
-    if (event.timeStamp - lastClickTime < maxDelay) {
-        lastClickTime = 0;
-        if (event.metaKey) {
-            changeableText.style.backgroundColor = 'transparent';
-        }
-        else {
+    if (event.ctrlKey) {
+        changeableText.style.backgroundColor = 'transparent';
+    } else {
+        if (event.timeStamp - lastClickTime < maxDelay) {
+            lastClickTime = 0;
             changeableText.style.backgroundColor = randomColor();
         }
+        lastClickTime = event.timeStamp;
     }
-    lastClickTime = event.timeStamp;
-}
-
-main.onclick = function (event) {
-    // show bubbling and dynamic dom manipulation
 }
 
 function randomColor() {
@@ -73,18 +65,25 @@ function randRange(start, end) {
 }
 
 innerDiv.onclick = function (event) {
-    alert('Green div clicked!');
+    console.log('Green div clicked!');
 }
 
 middleDiv.onclick = function (event) {
-    alert('Yellow div clicked!');
+    console.log('Yellow div clicked!');
 }
 
 outerDiv.onclick = function (event) {
-    alert('Red div clicked!');
+    console.log('Red div clicked!');
 }
 
-addButton.onclick = function (event) {
+/**
+ * For the add button, there are multiple ways to do it
+ * Some examples are shown below using different styles
+ * You can swap between them and debug them to see how they work
+ */
+
+// Delete using a closure
+function deleteWithClosure(event) {
     let newButton = document.createElement('button');
     newButton.innerText = 'Delete me';
     newButton.onclick = function (event) {
@@ -92,3 +91,25 @@ addButton.onclick = function (event) {
     }
     buttonsContainer.appendChild(newButton);
 }
+
+// Delete a button element by targeting its id, using a closure to keep track of the id incrementor
+const deleteById = (function () {
+    let buttonsAdded = 0;
+
+    function deleteButton(index) {
+        return () => document.getElementById(String(index))?.remove()
+    }
+
+    return function (event) {
+        let newButton = document.createElement('button');
+        newButton.innerText = `Delete me: ${buttonsAdded}`;
+        newButton.id = String(buttonsAdded);
+        newButton.onclick = deleteButton(buttonsAdded);
+        buttonsContainer.appendChild(newButton);
+        ++buttonsAdded;
+    }
+})()
+
+
+addButton.onclick = deleteWithClosure;
+// addButton.onclick = deleteById;
