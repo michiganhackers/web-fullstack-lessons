@@ -13,9 +13,10 @@ const buttonsContainer = document.getElementById('buttons-container');
 const defaultSize = parseInt(window.getComputedStyle(document.body).getPropertyValue('font-size'), 10);
 let fontSize = defaultSize;
 
-// TODO: 
-// Add an onclick callback to fontIncreaseButton that decrements fontSize.
-// Then, set the font size of changeableText
+fontIncreaseButton.onclick = function (event) {
+    ++fontSize;
+    changeableText.style.fontSize = `${fontSize}px`
+}
 
 // TODO:
 // Add more buttons and event handlers that modify the style attribute.
