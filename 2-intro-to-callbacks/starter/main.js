@@ -1,6 +1,7 @@
 const changeableText = document.getElementById("changeable-text");
 const changeableTextContainer = document.getElementById("changeable-text-container");
 const fontIncreaseButton = document.getElementById("increase-font-size");
+const fontDecreaseButton = document.getElementById("decrease-font-size");
 const innerDiv = document.getElementById("inner-div");
 const middleDiv = document.getElementById("middle-div");
 const outerDiv = document.getElementById("outer-div");
@@ -17,6 +18,10 @@ fontIncreaseButton.onclick = function (event) {
     ++fontSize;
     changeableText.style.fontSize = `${fontSize}px`
 }
+
+// TODO: 
+// Add an onclick callback to fontIncreaseButton that decrements fontSize.
+// Then, set the font size of changeableText
 
 // TODO:
 // Add more buttons and event handlers that modify the style attribute.
