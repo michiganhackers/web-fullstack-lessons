@@ -3,3 +3,6 @@
 
 # OS files
 .DS_Store
+
+# hide all instances of node_modules
+*node_modules/
