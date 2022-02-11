@@ -38,8 +38,8 @@ function Notes() {
                 </button>
             </div>
             <div className="Notes">
-                <Note body={"Some sample body text"}/>
-                <Note body={"More sample body text"}/>
+                <Note note={{body: "body", title: "title"}}/>
+                <Note note={{body: "more body", title: "more title"}}/>
             </div>
         </>
     );
