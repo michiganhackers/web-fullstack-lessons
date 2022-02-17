@@ -1,11 +1,6 @@
 import React from "react";
 import "./Note.css";
 
-const dateOptions = {
-    timeStyle: "medium",
-    dateStyle: "medium",
-};
-
 function Note(props) {
     return (
         <article className="Note">
@@ -14,6 +9,7 @@ function Note(props) {
                 <div>
                     <h3 className="no-margin">{props.note?.title}</h3>
                 </div>
+                {/* TODO: add buttons here */}
             </div>
             <p>{props.note?.body}</p>
         </article>

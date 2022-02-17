@@ -4,13 +4,19 @@ import "./NotesManager.css";
 
 function Notes() {
     const [notes, setNotes] = useState([
-        { title: "hi", body: "name", dateCreated: new Date() },
+        { 
+            title: "hi", 
+            body: "name", 
+            dateCreated: new Date(), 
+            completed: false
+        },
     ]);
 
     const [newNote, setNewNote] = useState({
         title: "",
         body: "",
         dateCreated: new Date(),
+        completed: false
     });
 
     const addNote = () => {
@@ -21,6 +27,7 @@ function Notes() {
             title: "",
             body: "",
             dateCreated: new Date(),
+            completed: false
         });
     };
 
@@ -28,6 +35,13 @@ function Notes() {
     const removeNote = (index) =>
         // keep all notes except for the once matching the index
         setNotes(notes.filter((_, i) => index !== i));
+    
+    const markComplete = i => {
+        let new_notes = [...notes];
+        new_notes[i].completed = true;
+        console.log(new_notes);
+        setNotes(new_notes);
+    }
 
     // only run once at component creation
     useEffect(() => {
@@ -79,6 +93,7 @@ function Notes() {
                     <Note
                         note={note}
                         deleteFunction={() => removeNote(i)}
+                        markCompleteFunction={() => markComplete(i)}
                         key={note.dateCreated}
                     />
                 ))}

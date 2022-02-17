@@ -11,3 +11,8 @@
     margin: 8px 0;
     outline: darkcyan 2px solid;
 }
+
+.completed {
+    outline: darkgreen 2px solid;
+    background-color: lightgreen;
+}
