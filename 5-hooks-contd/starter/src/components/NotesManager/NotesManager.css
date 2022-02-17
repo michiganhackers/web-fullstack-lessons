@@ -1,0 +1,10 @@
+.Notes {
+    flex-direction: column;
+    display: flex;
+    text-align: left;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
