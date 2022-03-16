@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="add-note">
+    <label>
+        Title:
+        <input id="add-title">
+    </label>
+    <label>
+        Body:
+        <input id="add-body">
+    </label>
+    <button type="submit">Add note</button>
+</form>
+<form id="delete-note">
+    <label>
+        Id:
+        <input id="delete-id" type="number">
+    </label>
+    <button type="submit">Delete note</button>
+</form>
+<form id="change-note">
+    <label>
+        Id:
+        <input id="change-id" type="number">
+    </label>
+    <label>
+        Title:
+        <input id="change-title">
+    </label>
+    <label>
+        Body:
+        <input id="change-body">
+    </label>
+    <button type="submit">Change note</button>
+</form>
+<script>
+    const addNote = document.querySelector("#add-note");
+    const deleteNote = document.querySelector("#delete-note");
+    const changeNote = document.querySelector("#change-note");
+
+    addNote.onsubmit = function (event) {
+        event.preventDefault();
+        fetch("https://localhost:3000/api/notes", {
+            method: "POST",
+            body: {
+                title: document.querySelector("#add-title").value,
+                body: document.querySelector("#add-body").value,
+            },
+        })
+    }
+
+    deleteNote.onsubmit = function (event) {
+        event.preventDefault();
+        fetch(`https://localhost:3000/api/notes/${document.querySelector("#delete-id").value}`, {
+            method: "DELETE",
+        })
+    }
+
+    changeNote.onsubmit = function (event) {
+        event.preventDefault();
+        fetch(`https://localhost:3000/api/notes/${document.querySelector("#change-id")}`, {
+            method: "PUT",
+            body: {
+                title: document.querySelector("#change-title").value,
+                body: document.querySelector("#change-body"),
+            }
+        })
+    }
+</script>
+</body>
+</html>

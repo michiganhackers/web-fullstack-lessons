@@ -12,6 +12,7 @@ router.post("/", function (req, res, next) {
   const { notes } = req.app.locals;
   const { title, body } = req.body;
   const new_id = req.app.locals.next_id;
+  console.log(req)
   ++req.app.locals.next_id;
   notes.push({ id: new_id, title, body });
   res.json({ id: new_id });
