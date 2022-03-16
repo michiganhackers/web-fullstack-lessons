@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <form id="add-note">
+      <label>
+        Title:
+        <input id="add-title" />
+      </label>
+      <label>
+        Body:
+        <input id="add-body" />
+      </label>
+      <button type="submit">Add note</button>
+    </form>
+    <form id="delete-note">
+      <label>
+        Id:
+        <input id="delete-id" type="number" />
+      </label>
+      <button type="submit">Delete note</button>
+    </form>
+    <form id="change-note">
+      <label>
+        Id:
+        <input id="change-id" type="number" />
+      </label>
+      <label>
+        Title:
+        <input id="change-title" />
+      </label>
+      <label>
+        Body:
+        <input id="change-body" />
+      </label>
+      <button type="submit">Change note</button>
+    </form>
+    <form id="log-in">
+      <label>
+        Username:
+        <input id="username" />
+      </label>
+      <label>
+        Password:
+        <input id="password" />
+      </label>
+      <button type="submit">Log in</button>
+    </form>
+    <script>
+      const addNote = document.querySelector("#add-note");
+      const deleteNote = document.querySelector("#delete-note");
+      const changeNote = document.querySelector("#change-note");
+      const logIn = document.querySelector("#log-in");
+
+      addNote.onsubmit = function (event) {
+        event.preventDefault();
+        fetch("http://localhost:3000/api/notes", {
+          referrerPolicy: "strict-origin-when-cross-origin",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            title: document.querySelector("#add-title").value,
+            body: document.querySelector("#add-body").value,
+          }),
+          "content-type": "application/json",
+          method: "POST",
+          mode: "cors",
+          credentials: "omit",
+        })
+          .then((res) => res.json())
+          .then(console.log);
+      };
+
+      deleteNote.onsubmit = function (event) {
+        event.preventDefault();
+        fetch(
+          `http://localhost:3000/api/notes/${
+            document.querySelector("#delete-id").value
+          }`,
+          {
+            referrerPolicy: "strict-origin-when-cross-origin",
+            headers: { "content-type": "application/json" },
+            "content-type": "application/json",
+            method: "DELETE",
+            mode: "cors",
+            credentials: "omit",
+          }
+        )
+          .then((res) => res.json())
+          .then(console.log);
+      };
+
+      changeNote.onsubmit = function (event) {
+        event.preventDefault();
+        fetch(
+          `https://localhost:3000/api/notes/${document.querySelector(
+            "#change-id"
+          )}`,
+          {
+            referrerPolicy: "strict-origin-when-cross-origin",
+            headers: { "content-type": "application/json" },
+            body: {
+              title: document.querySelector("#change-title").value,
+              body: document.querySelector("#change-body"),
+            },
+            "content-type": "application/json",
+            method: "PUT",
+            mode: "cors",
+            credentials: "omit",
+          }
+        )
+          .then((res) => res.json())
+          .then(console.log);
+      };
+
+      logIn.onsubmit = function (event) {
+          event.preventDefault();
+          fetch("http://localhost:3000/api/login", {
+                referrerPolicy: "strict-origin-when-cross-origin",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({
+                    username: document.querySelector("#username").value,
+                    password: document.querySelector("#password").value,
+                }),
+                "content-type": "application/json",
+                method: "POST",
+                mode: "cors",
+                credentials: "omit",
+                })
+                .then((res) => res.json())
+                .then(console.log);
+            }
+    </script>
+  </body>
+</html>
