@@ -25,7 +25,7 @@ router.get("/notes", (req, res, next) => {
 });
 
 // TODO: create a note with the specified title and body
-// Tou can just hardcode a userid in the SQL statement
+// You can just hardcode a userid in the SQL statement
 // if you haven't implemented the authentication yet
 router.post("/notes", 
 			// requireLogin,
