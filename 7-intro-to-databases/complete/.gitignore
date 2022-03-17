@@ -63,4 +63,4 @@ typings/
 # http test files
 *.http
 
-database/*
+database/db.sqlite3
