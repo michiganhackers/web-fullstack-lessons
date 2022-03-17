@@ -4,7 +4,6 @@ var bcrypt = require('bcrypt');
 
 // require user to be logged in before proceeding
 const requireLogin = (req, res, next) => {
-	console.log("requiring")
 	if (req.cookies.username) {
 		req.username = req.cookies.username;
 		next();
@@ -31,9 +30,7 @@ router.get("/notes", (req, res, next) => {
 	INNER JOIN users ON notes.userid = users.id;
 	`, [], (err, rows) => {
 		if (err) return console.error(err);
-		// FIXME: should be in index route since it renders html, not under api/notes
-		//		should return a json instead
-		res.render("notes", { notes: rows });
+		res.json(rows);
 	})
 });
 
@@ -61,12 +58,10 @@ router.get("/:username/notes", requireLogin, (req, res, next) => {
 		users.username = ?`, [username], (err, rows) => {
 		if (err) return console.error(err);
 		if (rows) {
-			console.log(rows);
-			// FIXME: same story, return json and render this page in index.js
-			res.render("notes", { notes: rows });
+			res.json(rows);
 		}
 		else
-			res.render("notes", { notes: [] });
+			res.json([]);
 	})
 })
 
