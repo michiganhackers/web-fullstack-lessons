@@ -38,21 +38,21 @@ db.serialize(() => {
 	const hash3 = bcrypt.hashSync('letmein', 10);
 	db.run(`
       INSERT OR IGNORE INTO users
-        (id, username, password)
+        (username, password)
       VALUES
-        (1, "adam", "${hash1}");
+        ("adam", "${hash1}");
   	`);
 	db.run(`
       INSERT OR IGNORE INTO users
-        (id, username, password)
+        (username, password)
       VALUES
-        (2, "ondrej", "${hash2}");
+        ("ondrej", "${hash2}");
   	`);
 	db.run(`
       INSERT OR IGNORE INTO users
-        (id, username, password)
+        (username, password)
       VALUES
-        (3, "keshav", "${hash3}");
+        ("keshav", "${hash3}");
   	`);
 });
 

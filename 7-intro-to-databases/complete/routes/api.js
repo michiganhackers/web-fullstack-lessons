@@ -31,6 +31,8 @@ router.get("/notes", (req, res, next) => {
 	INNER JOIN users ON notes.userid = users.id;
 	`, [], (err, rows) => {
 		if (err) return console.error(err);
+		// FIXME: should be in index route since it renders html, not under api/notes
+		//		should return a json instead
 		res.render("notes", { notes: rows });
 	})
 });
@@ -39,7 +41,7 @@ router.get("/notes", (req, res, next) => {
 router.get("/:username/notes", requireLogin, (req, res, next) => {
 	const { db } = req.app.locals;
 	const { username } = req.params;
-	if (req.username != username) {
+	if (req.username !== username) {
 		res.status(403);
 		res.send(`Access denied, you are not logged in to user ${username}.`);
 	}
@@ -60,6 +62,7 @@ router.get("/:username/notes", requireLogin, (req, res, next) => {
 		if (err) return console.error(err);
 		if (rows) {
 			console.log(rows);
+			// FIXME: same story, return json and render this page in index.js
 			res.render("notes", { notes: rows });
 		}
 		else
@@ -71,6 +74,7 @@ router.get("/:username/notes", requireLogin, (req, res, next) => {
 router.post("/notes", requireLogin, (req, res, next) => {
 	const { db } = req.app.locals;
 	const { title, body } = req.body;
+
 	db.run(`
 	INSERT INTO 
 		notes (
@@ -111,7 +115,7 @@ router.delete("/notes/:id", requireLogin, (req, res, next) => {
 	`, [id], function (err, row) {
 		if (err) return res.json({ msg: err });
 		if (!row) return res.json({ msg: "Couldn't find that note."});
-		if (row.username != req.username) {
+		if (row.username !== req.username) {
 			return res.json({msg: "You can't delete a note that you didn't post!"});
 		}
 		db.run(`DELETE FROM notes WHERE id = ?`, [id], function (err) {
@@ -142,9 +146,11 @@ router.put("/notes/:id", requireLogin, (req, res, next) => {
 	`, [id], function (err, row) {
 		if (err) return res.json({ msg: err });
 		if (!row) return res.json({ msg: "Couldn't find that note."});
-		if (row.username != req.username) {
+		if (row.username !== req.username) {
 			return res.json({msg: "You can't edit a note that you didn't post!"});
 		}
+		//FIXME: you can selectively update the fields that are non-empty strings instead of comparing to the previous note
+		//	Also id is automatic don't manually mess with it.
 		db.run(`UPDATE notes SET title = ?, body = ? WHERE id = ?`, [title, body, id], (err) => {
 			if (err) return res.json({ msg: err });
 			res.json({ msg: `Updated note ${id} with title "${title}" and body "${body}".` })
