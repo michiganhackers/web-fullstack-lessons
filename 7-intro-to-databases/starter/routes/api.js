@@ -62,7 +62,12 @@ router.put("/notes/:id",
 // TODO: Autheticate the user (verify that their username/password
 // combination is valid, then set that username as a cookie)
 // Hint: use res.cookie to set the username as a cookie,
-// and use bcrypt.compareSync to verify that the entered password
+// with these options:
+// {
+// 	maxAge: 7 * 24 * 60 * 60 * 1000,
+// 	httpOnly: false,
+// }
+// Use bcrypt.compareSync to verify that the entered password
 // matches the stored hashed one
 router.post("/login", (req, res, next) => {
 	const { db } = req.app.locals;
