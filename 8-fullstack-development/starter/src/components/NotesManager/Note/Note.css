@@ -1,0 +1,22 @@
+.no-margin {
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Note {
+    margin: 8px 0;
+    outline: darkcyan 2px solid;
+}
+
+.completed {
+    outline: darkgreen 2px solid;
+    background-color: lightgreen;
+}
+
+.username {
+    color: slateblue;
+}
