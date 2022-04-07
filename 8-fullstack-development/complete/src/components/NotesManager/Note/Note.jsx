@@ -7,10 +7,13 @@ const dateOptions = {
 };
 
 function Note(props) {
-    const {note, deleteFunction, markCompleteFunction} = props;
+    const { note, deleteFunction, markCompleteFunction } = props;
     const dateString = note.created.toLocaleString([], dateOptions);
     return (
-        <article className={`${note?.completed ? "Note completed" : "Note"}`} id={note.id}>
+        <article
+            className={`${note?.completed ? "Note completed" : "Note"}`}
+            id={note.id}
+        >
             <div className="header">
                 {/*we group these headers together so they appear vertically*/}
                 <div>
@@ -19,7 +22,12 @@ function Note(props) {
                     <h6 className="no-margin">{dateString}</h6>
                 </div>
                 <button onClick={deleteFunction}>Remove</button>
-                <button onClick={markCompleteFunction} disabled={note?.completed}>Mark Complete</button>
+                <button
+                    onClick={markCompleteFunction}
+                    disabled={note?.completed}
+                >
+                    Mark Complete
+                </button>
             </div>
             <p>{note?.body}</p>
         </article>

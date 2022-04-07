@@ -4,10 +4,12 @@ import { login } from "../../api";
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [loggedInName, setLoggedInName] = useState(document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("username="))
-        ?.split("=")[1]);
+    const [loggedInName, setLoggedInName] = useState(
+        document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("username="))
+            ?.split("=")[1]
+    );
 
     const handleLogin = () => {
         login(username, password).then(() => {

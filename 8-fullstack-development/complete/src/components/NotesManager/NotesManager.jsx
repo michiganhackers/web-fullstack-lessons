@@ -62,7 +62,6 @@ function Notes() {
 
     return (
         <>
-
             <div className="inputs">
                 <label>
                     Title:&nbsp;
