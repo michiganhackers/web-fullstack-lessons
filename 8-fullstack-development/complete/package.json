@@ -14,7 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start_windows": "set PORT=3001 && react-scripts start",
-    "start_linux": "export PORT=3001 react-scripts start",
+    "start_linux": "PORT=3001 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
