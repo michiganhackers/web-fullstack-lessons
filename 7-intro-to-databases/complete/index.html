@@ -68,13 +68,11 @@
       addNote.onsubmit = function (event) {
         event.preventDefault();
         fetch("http://localhost:3000/api/notes/", {
-          referrerPolicy: "strict-origin-when-cross-origin",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             title: document.querySelector("#add-title").value,
             body: document.querySelector("#add-body").value,
           }),
-          "content-type": "application/json",
           method: "POST",
           mode: "cors",
           credentials: "include",
@@ -90,9 +88,7 @@
             document.querySelector("#delete-id").value
           }`,
           {
-            referrerPolicy: "strict-origin-when-cross-origin",
             headers: { "content-type": "application/json" },
-            "content-type": "application/json",
             method: "DELETE",
             mode: "cors",
             credentials: "include",
@@ -109,13 +105,11 @@
             document.querySelector("#change-id").value
           }`,
           {
-            referrerPolicy: "strict-origin-when-cross-origin",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({
               title: document.querySelector("#change-title").value,
               body: document.querySelector("#change-body").value,
             }),
-            "content-type": "application/json",
             method: "PUT",
             mode: "cors",
             credentials: "include",
@@ -128,13 +122,11 @@
       logIn.onsubmit = function (event) {
         event.preventDefault();
         fetch("http://localhost:3000/api/login", {
-          referrerPolicy: "strict-origin-when-cross-origin",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             username: document.querySelector("#username").value,
             password: document.querySelector("#password").value,
           }),
-          "content-type": "application/json",
           credentials: "include",
           method: "POST",
           mode: "cors",
