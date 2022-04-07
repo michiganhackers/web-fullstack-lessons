@@ -101,6 +101,34 @@ router.post("/notes", requireLogin, (req, res, next) => {
   );
 });
 
+// get a single note
+router.get("/notes/:id", requireLogin, (req, res, next) => {
+    const { db } = req.app.locals;
+    const { id } = req.params;
+    db.get(
+        `
+	SELECT 
+		notes.id, 
+		notes.title, 
+		notes.body, 
+		notes.created, 
+		notes.userid,
+		users.username
+	FROM 
+		notes
+	JOIN 
+		users ON notes.userid = users.id
+	WHERE 
+		notes.id = ?
+	`,
+        [id],
+        function (err, row) {
+            if (err) return console.error(err);
+            res.json(row);
+        }
+    );
+});
+
 // delete a note
 router.delete("/notes/:id", requireLogin, (req, res, next) => {
   const { db } = req.app.locals;
@@ -205,6 +233,8 @@ router.post("/login", (req, res, next) => {
         res.cookie("username", username, {
           maxAge: 7 * 24 * 60 * 60 * 1000,
           httpOnly: false,
+          sameSite: "none",
+          secure :true,
         });
 
         res.json({ msg: "Your login was successful." });

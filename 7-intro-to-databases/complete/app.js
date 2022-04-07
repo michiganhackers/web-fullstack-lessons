@@ -78,6 +78,7 @@ app.set("view engine", "jade");
 
 app.use(
   cors({
+    origin: true,
     credentials: true,
   })
 );
