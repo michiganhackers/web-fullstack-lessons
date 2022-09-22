@@ -20,6 +20,7 @@ noteForm.onsubmit = function(event) {
     titleNode.innerText = title;
     const bodyNode = document.createElement("p");
     bodyNode.innerText = body;
+    bodyNode.style.font = Math.random() > 0.5 ? "monospace" : "serif";
     articleNode.appendChild(titleNode);
     articleNode.appendChild(bodyNode);
     notes.appendChild(articleNode);
