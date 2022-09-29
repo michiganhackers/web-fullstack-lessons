@@ -6,7 +6,6 @@ You may add JavaScript and CSS directly to [`index.html`](starter/index.html), b
 ### Required Features
 The following features are required, but you can add additional ones once you finish these.
 * Add another `<input>` to the `<form>`
-* Add a submission button to the form
 * Create new notes using the below template and insert them into the `<div>` with `id="notes"`.
 ```html
 <article>
