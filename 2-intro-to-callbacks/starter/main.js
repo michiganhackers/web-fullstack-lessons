@@ -20,7 +20,7 @@ fontIncreaseButton.onclick = function (event) {
 }
 
 // TODO: 
-// Add an onclick callback to fontIncreaseButton that decrements fontSize.
+// Add an onclick callback to fontDecreaseButton that decrements fontSize.
 // Then, set the font size of changeableText
 
 // TODO:
@@ -28,18 +28,17 @@ fontIncreaseButton.onclick = function (event) {
 // Feel free to use the randomColor() helper function
 
 // TODO:
-// Add a button that only does something when double clicked.
-// Try not to use the ondblclick attribute!
-
-// TODO:
-// Modify your existing buttons so that they reset their style when ctrl+clicked.
-
-// TODO:
 // Add an onclick callback to addButton that inserts a new button inside buttonsContainer
 
 // TODO:
 // Add an onclick attribute to each button that deletes that button using Element.remove()
 
+// TODO:
+// Add a button that only does something when double clicked.
+// Try not to use the ondblclick attribute!
+
+// TODO:
+// Modify your existing buttons so that they reset their style when ctrl+clicked.
 
 // use this if you want
 function randomColor() {
