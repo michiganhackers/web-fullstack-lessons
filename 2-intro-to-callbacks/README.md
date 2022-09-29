@@ -9,11 +9,9 @@ those to their respective files: [`main.js`](starter/main.js) and [`styles.css`]
 
 #### Checkpoint 1
 
-Do you have...
-
-* The site visible in your browser?
-* A button that decreases the font size?
-* A button that changes another style of the `p#changeable-text` element?
+* Is the site visible in your browser?
+* Is there a button that decreases the font size?
+* Is there a button that changes another style of the `p#changeable-text` element?
 
 #### Checkpoint 2
 
