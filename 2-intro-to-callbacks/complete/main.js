@@ -16,7 +16,9 @@ const defaultSize = parseInt(window.getComputedStyle(document.body).getPropertyV
 let fontSize = defaultSize;
 
 fontIncreaseButton.onclick = function (event) {
-    if (event.ctrlKey) {
+    // event.metaKey maps to the Command key on Mac and the Windows key on Windows
+    // we do this because event.ctrlkey doesn't really work on Mac
+    if (event.ctrlKey || event.metaKey) {
         fontSize = defaultSize;
     } else {
         ++fontSize;
@@ -25,7 +27,7 @@ fontIncreaseButton.onclick = function (event) {
 }
 
 fontDecreaseButton.onclick = function (event) {
-    if (event.ctrlKey) {
+    if (event.ctrlKey || event.metaKey) {
         fontSize = defaultSize;
     } else {
         --fontSize;
@@ -34,7 +36,7 @@ fontDecreaseButton.onclick = function (event) {
 }
 
 changeColorButton.onclick = function (event) {
-    if (event.ctrlKey) {
+    if (event.ctrlKey || event.metaKey) {
         changeableText.style.color = 'black';
     } else {
         changeableText.style.color = randomColor();
@@ -46,7 +48,7 @@ const maxDelay = 200;
 let lastClickTime = 0;
 // this can also be done using ondblclick, but the purpose is to show how to manually implement it
 changeBgColorButton.onclick = function (event) {
-    if (event.ctrlKey) {
+    if (event.ctrlKey || event.metaKey) {
         changeableText.style.backgroundColor = 'transparent';
     } else {
         if (event.timeStamp - lastClickTime < maxDelay) {
