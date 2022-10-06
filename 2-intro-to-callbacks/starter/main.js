@@ -1,10 +1,6 @@
 const changeableText = document.getElementById("changeable-text");
 const changeableTextContainer = document.getElementById("changeable-text-container");
 const fontIncreaseButton = document.getElementById("increase-font-size");
-const fontDecreaseButton = document.getElementById("decrease-font-size");
-const innerDiv = document.getElementById("inner-div");
-const middleDiv = document.getElementById("middle-div");
-const outerDiv = document.getElementById("outer-div");
 const addButton = document.getElementById('add-button');
 // TODO: add your buttons here after you add them to the HTML
 const buttonsContainer = document.getElementById('buttons-container');

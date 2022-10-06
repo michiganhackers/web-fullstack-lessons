@@ -4,9 +4,6 @@ const fontIncreaseButton = document.getElementById("increase-font-size");
 const fontDecreaseButton = document.getElementById("decrease-font-size");
 const changeColorButton = document.getElementById("change-color");
 const changeBgColorButton = document.getElementById("change-bg-color");
-const innerDiv = document.getElementById("inner-div");
-const middleDiv = document.getElementById("middle-div");
-const outerDiv = document.getElementById("outer-div");
 const addButton = document.getElementById('add-button');
 const buttonsContainer = document.getElementById('buttons-container');
 
@@ -94,13 +91,13 @@ const deleteById = (function () {
     let buttonsAdded = 0;
 
     function deleteButton(index) {
-        return () => document.getElementById(String(index))?.remove()
+        return () => document.getElementById(index.toString())?.remove()
     }
 
     return function (event) {
         let newButton = document.createElement('button');
         newButton.innerText = `Delete me: ${buttonsAdded}`;
-        newButton.id = String(buttonsAdded);
+        newButton.id = buttonsAdded.toString();
         newButton.onclick = deleteButton(buttonsAdded);
         buttonsContainer.appendChild(newButton);
         ++buttonsAdded;
