@@ -9,5 +9,5 @@
 
 .Note {
     margin: 8px 0;
-    outline: darkcyan 2px solid;
+    background-color: rgb(225, 225, 225);
 }
