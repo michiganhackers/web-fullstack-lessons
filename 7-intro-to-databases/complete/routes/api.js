@@ -8,8 +8,7 @@ const requireLogin = (req, res, next) => {
     req.username = req.cookies.username;
     next();
   } else {
-    res.status(403);
-    res.send("Access denied, you are not logged in.");
+    res.status(403).send("Access denied, you are not logged in.");
   }
 };
 
@@ -42,8 +41,7 @@ router.get("/:username/notes", requireLogin, (req, res, next) => {
   const { db } = req.app.locals;
   const { username } = req.params;
   if (req.username !== username) {
-    res.status(403);
-    res.send(`Access denied, you are not logged in to user ${username}.`);
+    res.status(403).send(`Access denied, you are not logged in to user ${username}.`);
   }
   db.all(
     `
@@ -55,7 +53,7 @@ router.get("/:username/notes", requireLogin, (req, res, next) => {
 		notes.userid,
 		users.username
 	FROM 
-		notes 
+		notes
 	INNER JOIN 
 		users ON notes.userid = users.id
 	WHERE 
@@ -95,8 +93,7 @@ router.post("/notes", requireLogin, (req, res, next) => {
     { $title: title, $body: body, $username: req.username },
     function (err) {
       if (err) return console.error(err);
-        res.status(201);
-      res.json({ id: this.lastID });
+        res.status(201).json({ id: this.lastID });
     }
   );
 });
@@ -151,11 +148,9 @@ router.delete("/notes/:id", requireLogin, (req, res, next) => {
     function (err, row) {
       if (err) return res.json({ msg: err });
       if (!row) {
-          res.status(404);
-          return res.json({ msg: "Couldn't find that note." })};
+          return res.status(404).json({ msg: "Couldn't find that note." })};
       if (row.username !== req.username) {
-          res.status(403)
-        return res.json({
+          return res.status(403).json({
           msg: "You can't delete a note that you didn't post!",
         });
       }
@@ -239,7 +234,7 @@ router.post("/login", (req, res, next) => {
 
         res.json({ msg: "Your login was successful." });
       } else {
-        res.json({ msg: "Incorrect password." });
+        res.status(401).json({ msg: "Incorrect password." });
       }
     }
   );

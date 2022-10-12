@@ -20,7 +20,23 @@ const requireLogin = (req, res, next) => {
 // Hint: use the code in index.js, except return a json instead of html
 router.get("/notes", (req, res, next) => {
   const { db } = req.app.locals;
-  res.json({ msg: "Implement this route!" });
+  db.all(
+    `
+	SELECT 
+		id, 
+		title, 
+		body, 
+		created, 
+		userid
+	FROM 
+		notes
+	`,
+    [],
+    (err, rows) => {
+      if (err) return console.error(err);
+      res.json(rows);
+    }
+  );
 });
 
 // TODO: create a note with the specified title and body
@@ -32,7 +48,20 @@ router.post(
   (req, res, next) => {
     const { db } = req.app.locals;
     const { title, body } = req.body;
-    res.json({ msg: "Implement this route!" });
+    db.run(`
+	INSERT INTO
+		notes(
+			title,
+			body,
+			userid
+		)
+	VALUES (
+		?, ?, ?
+	)
+	`, [title, body, 0], function (err) {
+		if (err) return console.error(err);
+		res.json({ id: this.lastID })
+	})
   }
 );
 
