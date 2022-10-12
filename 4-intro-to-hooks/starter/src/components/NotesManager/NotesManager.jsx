@@ -15,7 +15,7 @@ function Notes() {
         const newData = prompt("Enter some new data");
         console.log({newData});
         // only copies in old values right now
-        setNotes([...notes
+        setNotes([...notes,
             // TODO: add entered data to the notes state
         ]);
     };
