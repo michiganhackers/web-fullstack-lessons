@@ -1,5 +1,19 @@
 .App {
   text-align: center;
+  width: 60%;
+  margin: auto;
+}
+
+@media (max-width: 800px) {
+  .App {
+    width: 80%;
+  }
+}
+
+@media (max-width: 420px) {
+  .App {
+    width: 90%;
+  }
 }
 
 .App-logo {
