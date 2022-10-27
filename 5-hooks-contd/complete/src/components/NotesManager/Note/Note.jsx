@@ -1,13 +1,10 @@
 import React from "react";
 import "./Note.css";
+import {formatDate} from "utils";
 
-const dateOptions = {
-    timeStyle: "medium",
-    dateStyle: "medium",
-};
 
 function Note(props) {
-    const dateString = props.note.dateCreated.toLocaleString([], dateOptions);
+    const dateString = formatDate(props.note.dateCreated);
     return (
         <article className={`${props.note?.completed ? "Note completed" : "Note"}`}>
             <div className="header">
@@ -16,8 +13,10 @@ function Note(props) {
                     <h3 className="no-margin">{props.note?.title}</h3>
                     <h6 className="no-margin">{dateString}</h6>
                 </div>
-                <button onClick={props.deleteFunction}>Remove</button>
-                <button onClick={props.markCompleteFunction} disabled={props.note?.completed}>Mark Complete</button>
+                <div>
+                    <button onClick={props.deleteFunction}>Remove</button>
+                    <button onClick={props.markCompleteFunction} disabled={props.note?.completed}>Mark Complete</button>
+                </div>
             </div>
             <p>{props.note?.body}</p>
         </article>

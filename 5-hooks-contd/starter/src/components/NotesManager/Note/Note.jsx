@@ -5,11 +5,13 @@ function Note(props) {
     return (
         <article className="Note">
             <div className="header">
-                {/*we group these headers together so they appear vertically*/}
                 <div>
                     <h3 className="no-margin">{props.note?.title}</h3>
                 </div>
-                {/* TODO: add buttons here */}
+                <div>
+                    <button onClick={console.log}>Action</button>
+                    {/* TODO: add buttons here */}
+                </div>
             </div>
             <p>{props.note?.body}</p>
         </article>
