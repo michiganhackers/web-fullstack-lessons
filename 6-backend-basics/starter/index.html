@@ -1,76 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-</head>
-<body>
-<form id="add-note">
-    <label>
-        Title:
-        <input id="add-title">
-    </label>
-    <label>
-        Body:
-        <input id="add-body">
-    </label>
-    <button type="submit">Add note</button>
-</form>
-<form id="delete-note">
-    <label>
-        Id:
-        <input id="delete-id" type="number">
-    </label>
-    <button type="submit">Delete note</button>
-</form>
-<form id="change-note">
-    <label>
-        Id:
-        <input id="change-id" type="number">
-    </label>
-    <label>
-        Title:
-        <input id="change-title">
-    </label>
-    <label>
-        Body:
-        <input id="change-body">
-    </label>
-    <button type="submit">Change note</button>
-</form>
-<script>
-    const addNote = document.querySelector("#add-note");
-    const deleteNote = document.querySelector("#delete-note");
-    const changeNote = document.querySelector("#change-note");
+    <link rel="stylesheet" href="public/stylesheets/testing_style.css" />
+  </head>
 
-    addNote.onsubmit = function (event) {
+  <body>
+    <form id="add-note">
+      <fieldset>
+        <legend>Add a Note</legend>
+        <label>
+          Title:
+          <input id="add-title" />
+        </label>
+        <label>
+          Body:
+          <input id="add-body" />
+        </label>
+        <button type="submit">Add note</button>
+      </fieldset>
+    </form>
+    <form id="delete-note">
+      <fieldset>
+        <legend>Delete a Note</legend>
+        <label>
+          Id:
+          <input id="delete-id" type="number" />
+        </label>
+        <button type="submit">Delete note</button>
+      </fieldset>
+    </form>
+    <form id="change-note">
+      <fieldset>
+        <legend>Change a Note</legend>
+        <label>
+          Id:
+          <input id="change-id" type="number" />
+        </label>
+        <label>
+          Title:
+          <input id="change-title" />
+        </label>
+        <label>
+          Body:
+          <input id="change-body" />
+        </label>
+        <button type="submit">Change note</button>
+      </fieldset>
+    </form>
+    <output>
+      <pre id="output">
+        Output will appear here
+      </pre>
+    </output>
+    <script>
+      const addNote = document.querySelector("#add-note");
+      const deleteNote = document.querySelector("#delete-note");
+      const changeNote = document.querySelector("#change-note");
+
+      function updateDomFactory(method) {
+        // method is the request method, we can't get that from the response, so we add it as a parameter
+        return async (res) => {
+          const data = await res.json();
+          console.log(res);
+          document.querySelector("#output").innerText = `${method} ${
+            res.url
+          }\nSTATUS: ${res.status}\n${JSON.stringify(data, null, 4)}`;
+          return data;
+        };
+      }
+
+      addNote.onsubmit = function (event) {
         event.preventDefault();
-        fetch("https://localhost:3000/api/notes", {
-            method: "POST",
-            body: {
-                title: document.querySelector("#add-title").value,
-                body: document.querySelector("#add-body").value,
-            },
+        fetch("http://localhost:3000/api/notes/", {
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            title: document.querySelector("#add-title").value,
+            body: document.querySelector("#add-body").value,
+          }),
+          method: "POST",
+          mode: "cors",
+          credentials: "include",
         })
-    }
+          .then(updateDomFactory("POST"))
+          .then(console.log);
+      };
 
-    deleteNote.onsubmit = function (event) {
+      deleteNote.onsubmit = function (event) {
         event.preventDefault();
-        fetch(`https://localhost:3000/api/notes/${document.querySelector("#delete-id").value}`, {
+        fetch(
+          `http://localhost:3000/api/notes/${
+            document.querySelector("#delete-id").value
+          }`,
+          {
+            headers: { "content-type": "application/json" },
             method: "DELETE",
-        })
-    }
+            mode: "cors",
+            credentials: "include",
+          }
+        )
+          .then(updateDomFactory("DELETE"))
+          .then(console.log);
+      };
 
-    changeNote.onsubmit = function (event) {
+      changeNote.onsubmit = function (event) {
         event.preventDefault();
-        fetch(`https://localhost:3000/api/notes/${document.querySelector("#change-id")}`, {
+        fetch(
+          `http://localhost:3000/api/notes/${
+            document.querySelector("#change-id").value
+          }`,
+          {
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              title: document.querySelector("#change-title").value,
+              body: document.querySelector("#change-body").value,
+            }),
             method: "PUT",
-            body: {
-                title: document.querySelector("#change-title").value,
-                body: document.querySelector("#change-body"),
-            }
-        })
-    }
-</script>
-</body>
+            mode: "cors",
+            credentials: "include",
+          }
+        )
+          .then(updateDomFactory("PUT"))
+          .then(console.log);
+      };
+    </script>
+  </body>
 </html>
