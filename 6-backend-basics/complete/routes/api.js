@@ -65,9 +65,6 @@ router.get("/search", function (req, res, next) {
 
   if (!query) {
     query = req.cookies.last_search
-  }
-
-  if (!query) {
     res.json([]);
   }
   res.cookie("last_search", query)
