@@ -1,0 +1,11 @@
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 8px;
+}
+
+.profile button {
+    margin-left: 16px;
+}

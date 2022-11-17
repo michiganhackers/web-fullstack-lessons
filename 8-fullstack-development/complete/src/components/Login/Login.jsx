@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { login } from "../../api";
+import "./Login.css";
+import "../../App.css"
+import logo from "../../logo.svg";
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -24,10 +27,12 @@ function Login() {
     };
 
     return loggedInName ? (
-        <div>
+        <header>
+            {/*<img className={"App-logo"} src={logo} alt={"logo"}/>*/}
+        <div className="profile">
             <p>Welcome {loggedInName}</p>
             <button onClick={handleLogout}>Logout</button>
-        </div>
+        </div></header>
     ) : (
         <div className="inputs">
             <label>

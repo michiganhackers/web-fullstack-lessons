@@ -21,13 +21,15 @@ function Note(props) {
                     <h5 className="no-margin username">{note?.username}</h5>
                     <h6 className="no-margin">{dateString}</h6>
                 </div>
-                <button onClick={deleteFunction}>Remove</button>
-                <button
-                    onClick={markCompleteFunction}
-                    disabled={note?.completed}
-                >
-                    Mark Complete
-                </button>
+                <div className="button-bar">
+                    <button onClick={deleteFunction}>Remove</button>
+                    <button
+                        onClick={markCompleteFunction}
+                        disabled={note?.completed}
+                    >
+                        Mark Complete
+                    </button>
+                </div>
             </div>
             <p>{note?.body}</p>
         </article>
